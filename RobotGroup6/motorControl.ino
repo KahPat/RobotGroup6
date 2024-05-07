@@ -13,20 +13,8 @@ void motorControl(int speed1, int speed2) {
 
   //Apply the adjusted speeds to the motors
   analogWrite(MOTOR_PIN1, adjustedSpeed1 > 0 ? adjustedSpeed1: 0);
-  analogWrite(MOTOR_PIN2, adjustedSpeed1 > 0 ? -adjustedSpeed1: 0);
+  analogWrite(MOTOR_PIN2, adjustedSpeed1 < 0 ? -adjustedSpeed1: 0);
   analogWrite(MOTOR_PIN3, adjustedSpeed2 > 0 ? adjustedSpeed2: 0);
-  analogWrite(MOTOR_PIN4, adjustedSpeed2 > 0 ? -adjustedSpeed2: 0);
+  analogWrite(MOTOR_PIN4, adjustedSpeed2 < 0 ? -adjustedSpeed2: 0);
 }
-
-
-
-
-
-
-
-
-
-
-
-
 

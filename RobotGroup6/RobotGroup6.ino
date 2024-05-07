@@ -16,8 +16,12 @@
 #define MOTOR_PIN3 6
 #define MOTOR_PIN4 9
 
+#define TRIG_PIN 10
+#define ECHO_PIN 11
+
 unsigned long irSensorMillis = 0; //timer to track last report of IR sensors
 unsigned long colorSensorMillis = 0; //timer to track the last report of the color sensors
+unsigned long UltrasonicMillis = 0; //timer to track the last report of ultrasonic sensor
 
 void setup() {
   Serial.begin(9600);
@@ -32,9 +36,14 @@ void setup() {
   pinMode(MOTOR_PIN2, OUTPUT);
   pinMode(MOTOR_PIN3, OUTPUT);
   pinMode(MOTOR_PIN4, OUTPUT);
+
+  //Setup Ultrasonic sensor
+  pinMode(TRIG_PIN, OUTPUT);  // Sets the trigPin as an Output
+  pinMode(ECHO_PIN, INPUT);   // Sets the echoPin as an Input
 }
 
 void loop() {
+
   //Get the current run time in milliseconds
   unsigned long currentMillis = millis();
 
@@ -49,6 +58,12 @@ void loop() {
     colorSensorMillis = currentMillis;
     readColorSensor();
   }
+  
+  //Displays ultrasonic sensor readings every 500 ms
+  if (currentMillis - UltrasonicMillis >= 500) {
+    UltrasonicMillis = currentMillis;
+    readUltrasonic();
+  }
 
   // Test motor control by creating a routine that moves
   // The robot forward for 1 second and then turns 90 degrees right
@@ -59,7 +74,7 @@ void loop() {
   motorControl(0, 0); // Stop momentarily
   delay(100);
   motorControl(255, -255); // Turn to the right
-  delay(500);
+  delay(400);
   motorControl(0, 0); // Stop momentarily
   delay(100);
 }
