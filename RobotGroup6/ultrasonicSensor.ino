@@ -13,7 +13,6 @@ void readUltrasonic() {
 
   Serial.print("Distance: ");
   Serial.println(distance);  // Print the distance on the Serial Monitor
-  delay(500);               // Wait for a second to get stable readings
 }
 
 

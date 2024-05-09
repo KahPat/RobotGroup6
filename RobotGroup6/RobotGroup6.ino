@@ -21,7 +21,7 @@
 
 unsigned long irSensorMillis = 0; //timer to track last report of IR sensors
 unsigned long colorSensorMillis = 0; //timer to track the last report of the color sensors
-unsigned long UltrasonicMillis = 0; //timer to track the last report of ultrasonic sensor
+unsigned long ultrasonicMillis = 0; //timer to track the last report of ultrasonic sensor
 
 void setup() {
   Serial.begin(9600);
@@ -44,7 +44,7 @@ void setup() {
 
 void loop() {
 
-  //Get the current run time in milliseconds
+  //Get the current run time in millisecond
   unsigned long currentMillis = millis();
 
   //Check the states of the IR sensors every 500 ms
@@ -60,15 +60,15 @@ void loop() {
   }
   
   //Displays ultrasonic sensor readings every 500 ms
-  if (currentMillis - UltrasonicMillis >= 500) {
-    UltrasonicMillis = currentMillis;
+  if (currentMillis - ultrasonicMillis >= 500) {
+    ultrasonicMillis = currentMillis;
     readUltrasonic();
   }
 
   // Test motor control by creating a routine that moves
   // The robot forward for 1 second and then turns 90 degrees right
   // Adjust the delay after the turn to make it a perfect square
-
+  Serial.println("goin straight");
   motorControl(255, 255); // Go straight forward
   delay(1000);
   motorControl(0, 0); // Stop momentarily
