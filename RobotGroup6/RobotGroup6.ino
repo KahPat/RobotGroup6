@@ -23,6 +23,8 @@ unsigned long irSensorMillis = 0; //timer to track last report of IR sensors
 unsigned long colorSensorMillis = 0; //timer to track the last report of the color sensors
 unsigned long ultrasonicMillis = 0; //timer to track the last report of ultrasonic sensor
 
+String currentState = "Null";
+
 void setup() {
   Serial.begin(9600);
 
@@ -68,13 +70,14 @@ void loop() {
   // Test motor control by creating a routine that moves
   // The robot forward for 1 second and then turns 90 degrees right
   // Adjust the delay after the turn to make it a perfect square
-  Serial.println("goin straight");
-  motorControl(255, 255); // Go straight forward
-  delay(1000);
-  motorControl(0, 0); // Stop momentarily
-  delay(100);
-  motorControl(255, -255); // Turn to the right
-  delay(400);
-  motorControl(0, 0); // Stop momentarily
-  delay(100);
+
+  // Serial.println("goin straight");
+  //motorControl(255, 255); // Go straight forward
+  //delay(1000);
+  //motorControl(0, 0); // Stop momentarily
+  //delay(100);
+  //motorControl(255, -255); // Turn to the right
+  //delay(400);
+  //motorControl(0, 0); // Stop momentarily
+  //delay(100);
 }
