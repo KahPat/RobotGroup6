@@ -1,9 +1,9 @@
 #include <tcs3200.h>
 
-#define IR_1 2
-#define IR_2 4
-#define IR_3 7
-#define IR_4 8
+#define IR_1 4
+#define IR_2 7
+#define IR_3 8
+#define IR_4 12
 
 #define COLOR_0 A0
 #define COLOR_1 A1
@@ -80,4 +80,6 @@ void loop() {
   //delay(400);
   //motorControl(0, 0); // Stop momentarily
   //delay(100);
+
+  robotLogic();
 }
