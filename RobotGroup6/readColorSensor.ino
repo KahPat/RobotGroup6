@@ -1,7 +1,7 @@
 tcs3200 tcs(COLOR_0, COLOR_1, COLOR_2, COLOR_3, COLOR_OUT);
 
 void readColorSensor() {
-  const int samples = 5; 
+  const int samples = 5;
   long sumRed = 0, sumGreen = 0, sumBlue = 0, sumWhite = 0;
 
   for (int i = 0; i < samples; i++) {
@@ -11,10 +11,10 @@ void readColorSensor() {
     sumWhite += tcs.colorRead('c');
   }
 
-  int avgRed = sumRed/samples;
-  int avgGreen = sumGreen/samples;
-  int avgBlue = sumBlue/samples;
-  int avgWhite = sumWhite/samples;
+  int avgRed = sumRed / samples;
+  int avgGreen = sumGreen / samples;
+  int avgBlue = sumBlue / samples;
+  int avgWhite = sumWhite / samples;
 
   Serial.print("Average Color Sensor Readings: ");
   Serial.print(" R= ");
@@ -26,14 +26,3 @@ void readColorSensor() {
   Serial.print(" W(clear)= ");
   Serial.println(avgWhite);
 }
-
-
-
-
-
-
-
-
-
-
-

@@ -19,24 +19,27 @@
 #define TRIG_PIN 10
 #define ECHO_PIN 11
 
-//Turning Logic 
-String turnDirection = ""; // Keep track of the current turn direction
-String lastTurnDirection = ""; // Store the last turn direction to decide the next turn if sharp turn is detected 
-bool isTurning = false; // Flag to show if the robot is turning or not
-bool wallDetected = false; // Flag to show if the robot has detected a wall with the ultrasonic sensor 
+//Turning Logic
+String turnDirection = "";      // Keep track of the current turn direction
+String lastTurnDirection = "";  // Store the last turn direction to decide the next turn if sharp turn is detected
+bool isTurning = false;         // Flag to show if the robot is turning or not
+bool wallDetected = false;      // Flag to show if the robot has detected a wall with the ultrasonic sensor
 
-unsigned long irSensorMillis = 0; //timer to track last report of IR sensors
-unsigned long colorSensorMillis = 0; //timer to track the last report of the color sensors
-unsigned long ultrasonicMillis = 0; //timer to track the last report of ultrasonic sensor
+unsigned long irSensorMillis = 0;     //timer to track last report of IR sensors
+unsigned long colorSensorMillis = 0;  //timer to track the last report of the color sensors
+unsigned long ultrasonicMillis = 0;   //timer to track the last report of ultrasonic sensor
 
-// State logic 
+//Get the current run time in millisecond
+unsigned long currentMillis = millis();
+
+// State logic
 String currentState = "Null";
 String oldCurrentState = "Null";
 
-unsigned long currentDistance = 0; // tracks the distance from the ultrasonic sensor
+unsigned long currentDistance = 0;  // tracks the distance from the ultrasonic sensor
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   pinMode(IR_1, INPUT);
   pinMode(IR_2, INPUT);
@@ -70,7 +73,7 @@ void loop() {
     colorSensorMillis = currentMillis;
     readColorSensor();
   }
-  
+
   //Displays ultrasonic sensor readings every 500 ms
   if (currentMillis - ultrasonicMillis >= 500) {
     ultrasonicMillis = currentMillis;

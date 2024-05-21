@@ -16,5 +16,3 @@ void readUltrasonic() {
 
   currentDistance = distance;
 }
-
-

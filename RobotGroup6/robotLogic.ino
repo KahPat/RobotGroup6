@@ -14,6 +14,7 @@ unsigned long firstDetectionTime4 = 0;  // Time of first detection for sensor 4
 
 void robotLogic() {
   motorLogic();  //Process motor logic based on IR sensor values
+  turnLogic(); // Process turn logic based on IR sensor values
 }
 
 void turnLogic() {

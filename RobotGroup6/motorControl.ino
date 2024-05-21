@@ -1,4 +1,4 @@
-// Global speed multipliers for each motor 
+// Global speed multipliers for each motor
 float motor1Multiplier = 1.0;
 float motor2Multiplier = 1.0;
 
@@ -12,9 +12,8 @@ void motorControl(int speed1, int speed2) {
   adjustedSpeed2 = max(-255, min(255, adjustedSpeed2));
 
   //Apply the adjusted speeds to the motors
-  analogWrite(MOTOR_PIN1, adjustedSpeed1 > 0 ? adjustedSpeed1: 0);
-  analogWrite(MOTOR_PIN2, adjustedSpeed1 < 0 ? -adjustedSpeed1: 0);
-  analogWrite(MOTOR_PIN3, adjustedSpeed2 > 0 ? adjustedSpeed2: 0);
-  analogWrite(MOTOR_PIN4, adjustedSpeed2 < 0 ? -adjustedSpeed2: 0);
+  analogWrite(MOTOR_PIN1, adjustedSpeed1 > 0 ? adjustedSpeed1 : 0);
+  analogWrite(MOTOR_PIN2, adjustedSpeed1 < 0 ? -adjustedSpeed1 : 0);
+  analogWrite(MOTOR_PIN3, adjustedSpeed2 > 0 ? adjustedSpeed2 : 0);
+  analogWrite(MOTOR_PIN4, adjustedSpeed2 < 0 ? -adjustedSpeed2 : 0);
 }
-
