@@ -13,6 +13,8 @@ void readUltrasonic() {
 
   Serial.print("Distance: ");
   Serial.println(distance);  // Print the distance on the Serial Monitor
+
+  currentDistance = distance;
 }
 
 
