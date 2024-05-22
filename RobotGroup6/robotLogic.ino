@@ -10,11 +10,9 @@ const unsigned long sensorCheckThreshold = 50;  // Threshold in ms to check both
 unsigned long firstDetectionTime1 = 0;  // Time of first detection for sensor 1
 unsigned long firstDetectionTime4 = 0;  // Time of first detection for sensor 4
 
-
-
 void robotLogic() {
+  //turnLogic(); // Process turn logic based on IR sensor values
   motorLogic();  //Process motor logic based on IR sensor values
-  turnLogic(); // Process turn logic based on IR sensor values
 }
 
 void turnLogic() {

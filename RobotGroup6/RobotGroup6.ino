@@ -60,7 +60,7 @@ void setup() {
 void loop() {
 
   //Get the current run time in millisecond
-  unsigned long currentMillis = millis();
+  currentMillis = millis();
 
   //Check the states of the IR sensors every 500 ms
   if (currentMillis - irSensorMillis >= 500) {
@@ -80,19 +80,6 @@ void loop() {
     readUltrasonic();
   }
 
-  // Test motor control by creating a routine that moves
-  // The robot forward for 1 second and then turns 90 degrees right
-  // Adjust the delay after the turn to make it a perfect square
-
-  // Serial.println("goin straight");
-  //motorControl(255, 255); // Go straight forward
-  //delay(1000);
-  //motorControl(0, 0); // Stop momentarily
-  //delay(100);
-  //motorControl(255, -255); // Turn to the right
-  //delay(400);
-  //motorControl(0, 0); // Stop momentarily
-  //delay(100);
-
+  Serial.println(currentState);
   robotLogic();
 }
