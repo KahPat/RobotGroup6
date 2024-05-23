@@ -9,14 +9,14 @@ int* readInfrared() {
   IRvalues[3] = digitalRead(IR_4);
 
   // Print the read values to the serial monitor
-  // Serial.print("IR_1: ");
-  // Serial.print(IRvalues[0]);
-  // Serial.print(", IR_2: ");
-  // Serial.print(IRvalues[1]);
-  // Serial.print(", IR_3: ");
-  // Serial.print(IRvalues[2]);
-  // Serial.print(", IR_4: ");
-  // Serial.println(IRvalues[3]);
+  Serial.print("IR_1: ");
+  Serial.print(IRvalues[0]);
+  Serial.print(", IR_2: ");
+  Serial.print(IRvalues[1]);
+  Serial.print(", IR_3: ");
+  Serial.print(IRvalues[2]);
+  Serial.print(", IR_4: ");
+  Serial.println(IRvalues[3]);
 
   return IRvalues;  // Return the array of IR sensor values
 }

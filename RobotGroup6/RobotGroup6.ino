@@ -74,8 +74,8 @@ void loop() {
     readColorSensor();
   }
 
-  //Displays ultrasonic sensor readings every 500 ms
-  if (currentMillis - ultrasonicMillis >= 500) {
+  //Reads ultrasonic sensor readings every 20 ms
+  if (currentMillis - ultrasonicMillis >= 20) {
     ultrasonicMillis = currentMillis;
     readUltrasonic();
   }
