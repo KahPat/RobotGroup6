@@ -1,4 +1,5 @@
 #include <tcs3200.h>
+#include <WiFiNINA.h>
 
 #define IR_1 4
 #define IR_2 7
@@ -18,6 +19,10 @@
 
 #define TRIG_PIN 10
 #define ECHO_PIN 11
+
+#define LED_R 25
+#define LED_G 26
+#define LED_B 27
 
 //Turning Logic
 String turnDirection = "";      // Keep track of the current turn direction
@@ -55,6 +60,11 @@ void setup() {
   //Setup Ultrasonic sensor
   pinMode(TRIG_PIN, OUTPUT);  // Sets the trigPin as an Output
   pinMode(ECHO_PIN, INPUT);   // Sets the echoPin as an Input
+
+  // Setup onboard RGB LED pins
+  WiFiDrv::pinMode(LED_R, OUTPUT); // Define red LED
+  WiFiDrv::pinMode(LED_G, OUTPUT); // Define green LED
+  WiFiDrv::pinMode(LED_B, OUTPUT); // Define blue LED
 }
 
 void loop() {
@@ -71,7 +81,7 @@ void loop() {
   //Read the color sensor
   if (currentMillis - colorSensorMillis >= 250) {
     colorSensorMillis = currentMillis;
-    readColorSensor();
+    detectColor();
   }
 
   //Reads ultrasonic sensor readings every 20 ms
@@ -80,6 +90,10 @@ void loop() {
     readUltrasonic();
   }
 
-  Serial.println(currentState);
+  // Serial.println(currentState);
   robotLogic();
+
+  WiFiDrv::analogWrite(25, 255); //Red
+  WiFiDrv::analogWrite(26, 255); //Green
+  WiFiDrv::analogWrite(27, 255); //Blue
 }

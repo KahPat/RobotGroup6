@@ -200,3 +200,7 @@ void motorLogic() {
     }
   }
 }
+
+void colorLogic() {
+  
+}

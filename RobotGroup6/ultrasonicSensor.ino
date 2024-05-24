@@ -11,8 +11,8 @@ void readUltrasonic() {
   duration = pulseIn(ECHO_PIN, HIGH);
   distance = duration * 0.034 / 2;  // Calculate the distance
 
-  Serial.print("Distance: ");
-  Serial.println(distance);  // Print the distance on the Serial Monitor
+  // Serial.print("Distance: ");
+  // Serial.println(distance);  // Print the distance on the Serial Monitor
 
   currentDistance = distance;
 }
