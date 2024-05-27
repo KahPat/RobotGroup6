@@ -5,7 +5,7 @@ unsigned long turnStartTime = 0;                // Time when the turn starts
 const unsigned long initialTurnDuration = 600;  // Duration for initial turn when wall detected before IR sensor activities
 int turnSpeed = 150;
 
-const unsigned long sensorCheckThreshold = 50;  // Threshold in ms to check both sensors
+const unsigned long sensorCheckThreshold = 100;  // Threshold in ms to check both sensors
 
 unsigned long firstDetectionTime1 = 0;  // Time of first detection for sensor 1
 unsigned long firstDetectionTime4 = 0;  // Time of first detection for sensor 4
