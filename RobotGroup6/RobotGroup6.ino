@@ -72,14 +72,14 @@ void loop() {
   //Get the current run time in millisecond
   currentMillis = millis();
 
-  //Check the states of the IR sensors every 100 ms
+  //Check the states of the IR sensors every 200 ms
   if (currentMillis - irSensorMillis >= 100) {
     irSensorMillis = currentMillis;
     readInfrared();
   }
 
   //Read the color sensor
-  if (currentMillis - colorSensorMillis >= 250) {
+  if (currentMillis - colorSensorMillis >= 100) {
     colorSensorMillis = currentMillis;
     readColorSensor();
   }

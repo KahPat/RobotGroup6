@@ -5,7 +5,7 @@ unsigned long turnStartTime = 0;                // Time when the turn starts
 const unsigned long initialTurnDuration = 600;  // Duration for initial turn when wall detected before IR sensor activities
 int turnSpeed = 150;
 
-const unsigned long sensorCheckThreshold = 100;  // Threshold in ms to check both sensors
+const unsigned long sensorCheckThreshold = 50;  // Threshold in ms to check both sensors
 
 unsigned long firstDetectionTime1 = 0;  // Time of first detection for sensor 1
 unsigned long firstDetectionTime4 = 0;  // Time of first detection for sensor 4
@@ -13,6 +13,7 @@ unsigned long firstDetectionTime4 = 0;  // Time of first detection for sensor 4
 void robotLogic() {
   turnLogic(); // Process turn logic based on IR sensor values
   motorLogic();  //Process motor logic based on IR sensor values
+  efficientLogic();
 }
 
 void turnLogic() {
@@ -201,6 +202,10 @@ void motorLogic() {
   }
 }
 
-void colorLogic() {
-  
+void efficientLogic() {
+  // Check if the green finish has been detected
+  if (detectColor(avgRed, avgGreen, avgBlue) == GREEN) {
+    // Stop all operations
+    return;
+  }
 }
