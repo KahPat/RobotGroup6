@@ -4,9 +4,9 @@
 // Note: Correct the syntax if needed, e.g., `tcs3200` should be capitalized if it's a class name.
 tcs3200 tcs(COLOR_0, COLOR_1, COLOR_2, COLOR_3, COLOR_OUT);
 
-const int RED_THRESHOLD = 5;
-const int GREEN_THRESHOLD = 5;
-const int BLUE_THRESHOLD = 5;
+const int RED_THRESHOLD = 8;
+const int GREEN_THRESHOLD = 8;
+const int BLUE_THRESHOLD = 8;
 
 enum Color {
   RED,
@@ -52,13 +52,16 @@ void readColorSensor() {
   Color detectedColor = detectColor(avgRed, avgGreen, avgBlue);
   switch (detectedColor) {
     case RED:
+      WiFiDrv::analogWrite(26, 255); //Red
       Serial.println("Detected color: Red");
       break;
     case GREEN:
+      WiFiDrv::analogWrite(25, 255); //Green
       Serial.println("Detected color: Green");
       break;
     case BLUE:
       Serial.println("Detected color: Blue");
+      WiFiDrv::analogWrite(27, 255); //Blue
       break;
     case YELLOW:
       Serial.println("Detected color: Yellow");
@@ -72,9 +75,9 @@ void readColorSensor() {
 Color detectColor(int avgRed, int avgGreen, int avgBlue) {
   // Define expected values for each color
   const int redExpected[] = {28, 7, 10};
-  const int greenExpected[] = {17, 26, 20};
+  const int greenExpected[] = {20, 30, 23};
   const int blueExpected[] = {8, 10, 22};
-  const int yellowExpected[] = {47, 30, 18};
+  const int yellowExpected[] = {55, 36, 20};
 
   // Check for red
   if (abs(avgRed - redExpected[0]) < RED_THRESHOLD &&

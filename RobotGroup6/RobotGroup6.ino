@@ -93,7 +93,7 @@ void loop() {
   // Serial.println(currentState);
   robotLogic();
 
-  WiFiDrv::analogWrite(25, 255); //Red
-  WiFiDrv::analogWrite(26, 255); //Green
-  WiFiDrv::analogWrite(27, 255); //Blue
+  //WiFiDrv::analogWrite(25, 255); //Green
+  //WiFiDrv::analogWrite(26, 255); //Red
+  //WiFiDrv::analogWrite(27, 255); //Blue
 }
