@@ -54,6 +54,7 @@ void readColorSensor() {
     case RED:
       WiFiDrv::analogWrite(26, 255); //Red
       Serial.println("Detected color: Red");
+      WiFiDrv::analogWrite(LED_R, 255); //Red
       break;
     case GREEN:
       WiFiDrv::analogWrite(25, 255); //Green
