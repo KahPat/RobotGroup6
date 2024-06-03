@@ -5,82 +5,83 @@ unsigned long turnStartTime = 0;                // Time when the turn starts
 const unsigned long initialTurnDuration = 600;  // Duration for initial turn when wall detected before IR sensor activities
 int turnSpeed = 150;
 
-const unsigned long sensorCheckThreshold = 50;  // Threshold in ms to check both sensors
+const unsigned long sensorCheckThreshold = 100;  // Threshold in ms to check both sensors
+const unsigned long sensorCheckThreshold = 50;   // Threshold in ms to check both sensors
 
 unsigned long firstDetectionTime1 = 0;  // Time of first detection for sensor 1
 unsigned long firstDetectionTime4 = 0;  // Time of first detection for sensor 4
 
 void robotLogic() {
-  turnLogic(); // Process turn logic based on IR sensor values
+  turnLogic();   // Process turn logic based on IR sensor values
   motorLogic();  //Process motor logic based on IR sensor values
   efficientLogic();
 }
 
 void turnLogic() {
 
- int* IRvalues;
- IRvalues = readInfrared();  // This will point to the array of sensor values
+  int* IRvalues;
+  IRvalues = readInfrared();  // This will point to the array of sensor values
 
- // Print the read values to the serial monitor
+  // Print the read values to the serial monitor
 
- // Check to see if a wall has been detected
- if (currentDistance < 8 && wallDetected == false) {
-   isTurning = true;
-   wallDetected = true;
-   turnStartTime = currentMillis;
-   initialForwardMotion = true;
- }
+  // Check to see if a wall has been detected
+  if (currentDistance < 8 && wallDetected == false) {
+    isTurning = true;
+    wallDetected = true;
+    turnStartTime = currentMillis;
+    initialForwardMotion = true;
+  }
 
- // If the wall hasn't been detected and the robot is not in a turning state
- if (!isTurning && wallDetected == false) {
+  // If the wall hasn't been detected and the robot is not in a turning state
+  if (!isTurning && wallDetected == false) {
 
-   // Check the outer two sensors to see if they are triggered, and start the threshold timer
-   if (IRvalues[3] == 1 && firstDetectionTime1 == 0) {
-     firstDetectionTime1 = currentMillis;
-     Serial.println("Detected Left Sensor");
-   }
-   if (IRvalues[0] == 1 && firstDetectionTime4 == 0) {
-     firstDetectionTime4 = currentMillis;
-     Serial.println("Detected Right Sensor");
-   }
+    // Check the outer two sensors to see if they are triggered, and start the threshold timer
+    if (IRvalues[3] == 1 && firstDetectionTime1 == 0) {
+      firstDetectionTime1 = currentMillis;
+      Serial.println("Detected Left Sensor");
+    }
+    if (IRvalues[0] == 1 && firstDetectionTime4 == 0) {
+      firstDetectionTime4 = currentMillis;
+      Serial.println("Detected Right Sensor");
+    }
 
-   // Check if both sensors detected a line within the threshold and determine the turn direction
+    // Check if both sensors detected a line within the threshold and determine the turn direction
 
-   if (firstDetectionTime1 > 0 && currentMillis - firstDetectionTime1 < sensorCheckThreshold && firstDetectionTime4 > 0 && currentMillis - firstDetectionTime4 < sensorCheckThreshold) {
-     // If both sensors detect a black line, turn the opposite direction of the last turn
-     isTurning = true;
-     initialForwardMotion = true;  // Initiate forward motion when turning starts
-     turnStartTime = currentMillis;
-     // turnDirection = lastTurnDirection == "left" ? "right" : "left";  // Opposite direction of last turn
-     turnDirection = lastTurnDirection;
-     firstDetectionTime1 = 0;
-     firstDetectionTime4 = 0;
-     lastTurnDirection = turnDirection;
-     Serial.print("Solid Line Detected (Sensors 1 and 4) - turning ");
-     Serial.println(turnDirection);
-   } else if (firstDetectionTime1 > 0 && currentMillis - firstDetectionTime1 >= sensorCheckThreshold) {
-     // If the left sensor detects a black line, start a left turn
-     isTurning = true;
-     initialForwardMotion = true;  // Initiate forward motion when turning starts
-     turnStartTime = currentMillis;
-     turnDirection = "left";
-     firstDetectionTime1 = 0;  // Reset after decision
-     lastTurnDirection = turnDirection;
-     Serial.println("Left Turn Detected");
-   } else if (firstDetectionTime4 > 0 && currentMillis - firstDetectionTime4 >= sensorCheckThreshold) {
-     // If the right sensor detects a black line, start a left turn
-     isTurning = true;
-     initialForwardMotion = true;  // Initiate forward motion when turning starts
-     turnStartTime = currentMillis;
-     turnDirection = "right";
-     firstDetectionTime4 = 0;  // Reset after decision
-     lastTurnDirection = turnDirection;
-     Serial.println("Right Turn Detected");
+    if (firstDetectionTime1 > 0 && currentMillis - firstDetectionTime1 < sensorCheckThreshold && firstDetectionTime4 > 0 && currentMillis - firstDetectionTime4 < sensorCheckThreshold) {
+      // If both sensors detect a black line, turn the opposite direction of the last turn
+      isTurning = true;
+      initialForwardMotion = true;  // Initiate forward motion when turning starts
+      turnStartTime = currentMillis;
+      // turnDirection = lastTurnDirection == "left" ? "right" : "left";  // Opposite direction of last turn
+      turnDirection = lastTurnDirection;
+      firstDetectionTime1 = 0;
+      firstDetectionTime4 = 0;
+      lastTurnDirection = turnDirection;
+      Serial.print("Solid Line Detected (Sensors 1 and 4) - turning ");
+      Serial.println(turnDirection);
+    } else if (firstDetectionTime1 > 0 && currentMillis - firstDetectionTime1 >= sensorCheckThreshold) {
+      // If the left sensor detects a black line, start a left turn
+      isTurning = true;
+      initialForwardMotion = true;  // Initiate forward motion when turning starts
+      turnStartTime = currentMillis;
+      turnDirection = "left";
+      firstDetectionTime1 = 0;  // Reset after decision
+      lastTurnDirection = turnDirection;
+      Serial.println("Left Turn Detected");
+    } else if (firstDetectionTime4 > 0 && currentMillis - firstDetectionTime4 >= sensorCheckThreshold) {
+      // If the right sensor detects a black line, start a left turn
+      isTurning = true;
+      initialForwardMotion = true;  // Initiate forward motion when turning starts
+      turnStartTime = currentMillis;
+      turnDirection = "right";
+      firstDetectionTime4 = 0;  // Reset after decision
+      lastTurnDirection = turnDirection;
+      Serial.println("Right Turn Detected");
 
-   } else {
-     // Serial.println("No Turn Logic Detected");
-   }
- }
+    } else {
+      // Serial.println("No Turn Logic Detected");
+    }
+  }
 }
 
 
@@ -202,10 +203,12 @@ void motorLogic() {
   }
 }
 
-void efficientLogic() {
-  // Check if the green finish has been detected
-  if (detectColor(avgRed, avgGreen, avgBlue) == GREEN) {
-    // Stop all operations
-    return;
+void colorLogic() {
+
+  void efficientLogic() {
+    // Check if the green finish has been detected
+    if (detectColor(avgRed, avgGreen, avgBlue) == GREEN) {
+      // Stop all operations
+      return;
+    }
   }
-}

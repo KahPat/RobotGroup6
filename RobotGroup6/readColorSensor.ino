@@ -36,15 +36,15 @@ void readColorSensor() {
   avgBlue = sumBlue / samples;
   int avgWhite = sumWhite / samples;
 
-  Serial.print("Average Color Sensor Readings: ");
-  Serial.print(" R= ");
-  Serial.print(avgRed);
-  Serial.print(" G= ");
-  Serial.print(avgGreen);
-  Serial.print(" B= ");
-  Serial.print(avgBlue);
-  Serial.print(" W(clear)= ");
-  Serial.println(avgWhite);
+  // Serial.print("Average Color Sensor Readings: ");
+  // Serial.print(" R= ");
+  // Serial.print(avgRed);
+  // Serial.print(" G= ");
+  // Serial.print(avgGreen);
+  // Serial.print(" B= ");
+  // Serial.print(avgBlue);
+  // Serial.print(" W(clear)= ");
+  // Serial.println(avgWhite);
 
   // Detect the color
   Color detectedColor = detectColor(avgRed, avgGreen, avgBlue);
@@ -75,9 +75,9 @@ void readColorSensor() {
       break;
     case BLACK:
       Serial.println("Detected color: Black");
-      WiFiDrv::analogWrite(25, 0);    //Green
+      WiFiDrv::analogWrite(25, 0);  //Green
       WiFiDrv::analogWrite(26, 0);  //Red
-      WiFiDrv::analogWrite(27, 0);    //Blue
+      WiFiDrv::analogWrite(27, 0);  //Blue
       break;
     case NONE:
       Serial.println("No color detected");

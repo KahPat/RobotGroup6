@@ -62,9 +62,9 @@ void setup() {
   pinMode(ECHO_PIN, INPUT);   // Sets the echoPin as an Input
 
   // Setup onboard RGB LED pins
-  WiFiDrv::pinMode(LED_R, OUTPUT); // Define red LED
-  WiFiDrv::pinMode(LED_G, OUTPUT); // Define green LED
-  WiFiDrv::pinMode(LED_B, OUTPUT); // Define blue LED
+  WiFiDrv::pinMode(LED_R, OUTPUT);  // Define red LED
+  WiFiDrv::pinMode(LED_G, OUTPUT);  // Define green LED
+  WiFiDrv::pinMode(LED_B, OUTPUT);  // Define blue LED
 }
 
 void loop() {
@@ -93,7 +93,9 @@ void loop() {
   // Serial.println(currentState);
   robotLogic();
 
+  //WiFiDrv::analogWrite(25, 255); //Green
   //WiFiDrv::analogWrite(25, 255); //Blue
   //WiFiDrv::analogWrite(26, 255); //Red
   //WiFiDrv::analogWrite(27, 255); //Blue
+
 }
