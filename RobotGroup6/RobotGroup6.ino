@@ -90,7 +90,6 @@ void loop() {
     readUltrasonic();
   }
 
-  // Serial.println(currentState);
   robotLogic();
 
   //WiFiDrv::analogWrite(25, 255); //Green
